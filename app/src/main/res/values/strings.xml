@@ -2,4 +2,6 @@
     <string name="app_name">IMCApp</string>
     <string name="male">Hombre</string>
     <string name="female">Mujer</string>
+    <string name="Calcular">Calcular</string>
+    <string name="Recalcular">Re-calcular</string>
 </resources>
