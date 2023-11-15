@@ -92,10 +92,6 @@ class ImcCalculatorActivity : AppCompatActivity() {
         tvAge.setText(Age.toString() + " años")
     }
 
-    private fun setAltura(){
-        tvHeight.setText(altura.toString() + " cm")
-    }
-
     private fun initComponents() {
         viewMale = findViewById(R.id.viewMale)
         viewFemale = findViewById(R.id.viewFemale)
@@ -131,6 +127,29 @@ class ImcCalculatorActivity : AppCompatActivity() {
     }
 
     private fun navigate2result(resultado: Double) {
+
+        var texto:String = ""
+        var titulo:String = ""
+
+        when {
+            resultado < 18.5 -> {
+                titulo = "@strings/Pesoiferior"
+                texto = "Peso inferior al peso normal"
+            }
+            resultado in 18.5..24.9 -> {
+                titulo = "@strings/Pesonormal"
+                texto = "Peso normal, estás en plena forma"
+            }
+            resultado in 25.0..29.9 -> {
+                titulo = "@strings/Sobrepeso"
+                texto = "Peso superior a la media, teniendo en cuenta tu peso y altura"
+            }
+            resultado > 30.0 -> {
+                titulo = "@strings/Obesidad"
+                texto = "Peso muy superior a lo normal, tienes un problema, tienes que cuidarte más."
+            }
+        }
+
         val intent = Intent(this, ResultActivity::class.java)
 
         intent.putExtra("RESULTADO_EXTRA", resultado)

@@ -4,4 +4,9 @@
     <string name="female">Mujer</string>
     <string name="Calcular">Calcular</string>
     <string name="Recalcular">Re-calcular</string>
+    <string name="Sobrepeso">Sobrepeso</string>
+    <string name="Obesidad">Obesidad</string>
+    <string name="Pesonormal">Peso normal</string>
+    <string name="Pesoiferior">Peso inferior a la media</string>
+
 </resources>
