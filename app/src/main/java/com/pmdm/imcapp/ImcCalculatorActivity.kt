@@ -51,9 +51,8 @@ class ImcCalculatorActivity : AppCompatActivity() {
         }
 
         rsHeight.addOnChangeListener { _, value, _ ->
-            tvHeight.text = value.toString()
+            tvHeight.text = value.toString() + " cm"
             //tvHeight.text = DecimalFormat("#.##").format(value) + " cm"
-            setAltura()
         }
 
         btnremovePeso.setOnClickListener{
