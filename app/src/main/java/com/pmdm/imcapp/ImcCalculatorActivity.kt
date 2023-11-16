@@ -86,9 +86,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
 
     private fun calculateIMC(weight: Double, height: Double): Double {
         val heightInMeters = height / 100.0
-        val result = weight / (heightInMeters * heightInMeters)
-
-        return BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN).toDouble()
+        return weight / (heightInMeters * heightInMeters)
     }
     private fun setPeso(){
         tvPeso.setText(weight.toString() + " Kg")

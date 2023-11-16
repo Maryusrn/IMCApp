@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import java.text.DecimalFormat
+
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var btnRecalc: AppCompatButton
@@ -19,10 +21,11 @@ class ResultActivity : AppCompatActivity() {
         initUI()
 
         var initialResult = intent.getDoubleExtra("RESULTADO_EXTRA", 0.0)
+        var num:String = DecimalFormat("#.##").format(initialResult)
         var initialTitle = intent.getStringExtra("TITULO_EXTRA") ?: ""
         var initialTextResult = intent.getStringExtra("TEXTO_EXTRA") ?: ""
 
-        tvresult.text = initialResult.toString()
+        tvresult.text = num
         tvtextview1.text = initialTitle
         tvdesc.text = initialTextResult
     }
