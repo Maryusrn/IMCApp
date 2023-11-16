@@ -165,9 +165,7 @@ class ImcCalculatorActivity : AppCompatActivity() {
         intent.putExtra("RESULTADO_EXTRA", resultado)
         intent.putExtra("TITULO_EXTRA", titulo)
         intent.putExtra("TEXTO_EXTRA", texto)
-
         startActivity(intent)
     }
-
 }
 
