@@ -9,6 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.slider.RangeSlider
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.DecimalFormat
 
 class ImcCalculatorActivity : AppCompatActivity() {
@@ -51,8 +53,10 @@ class ImcCalculatorActivity : AppCompatActivity() {
         }
 
         rsHeight.addOnChangeListener { _, value, _ ->
-            tvHeight.text = value.toString() + " cm"
-            //tvHeight.text = DecimalFormat("#.##").format(value) + " cm"
+            altura = value.toDouble()
+            tvHeight.text = "$altura cm"
+            //tvHeight.text = value.toString() + " cm"
+            //tvHeight.text = DecimalFormat("%.Of").format(value) + " cm"
         }
 
         btnremovePeso.setOnClickListener{
@@ -82,7 +86,9 @@ class ImcCalculatorActivity : AppCompatActivity() {
 
     private fun calculateIMC(weight: Double, height: Double): Double {
         val heightInMeters = height / 100.0
-        return weight / (heightInMeters * heightInMeters)
+        val result = weight / (heightInMeters * heightInMeters)
+
+        return BigDecimal(result).setScale(2, RoundingMode.HALF_EVEN).toDouble()
     }
     private fun setPeso(){
         tvPeso.setText(weight.toString() + " Kg")
@@ -128,33 +134,40 @@ class ImcCalculatorActivity : AppCompatActivity() {
 
     private fun navigate2result(resultado: Double) {
 
-        var texto:String = ""
-        var titulo:String = ""
+        var texto: String
+        var titulo: String
 
         when {
             resultado < 18.5 -> {
-                titulo = "@strings/Pesoiferior"
-                texto = "Peso inferior al peso normal"
+                titulo = getString(R.string.Pesoiferior)
+                texto = getString(R.string.Pesoiferiordesc)
             }
             resultado in 18.5..24.9 -> {
-                titulo = "@strings/Pesonormal"
-                texto = "Peso normal, estás en plena forma"
+                titulo = getString(R.string.Pesonormal)
+                texto = getString(R.string.Pesonormaldesc)
             }
             resultado in 25.0..29.9 -> {
-                titulo = "@strings/Sobrepeso"
-                texto = "Peso superior a la media, teniendo en cuenta tu peso y altura"
+                titulo = getString(R.string.Sobrepeso)
+                texto = getString(R.string.Sobrepesodesc)
             }
             resultado > 30.0 -> {
-                titulo = "@strings/Obesidad"
-                texto = "Peso muy superior a lo normal, tienes un problema, tienes que cuidarte más."
+                titulo = getString(R.string.Obesidad)
+                texto = getString(R.string.Obesidaddesc)
+            }
+            else -> {
+                titulo = ""
+                texto = ""
             }
         }
 
         val intent = Intent(this, ResultActivity::class.java)
 
         intent.putExtra("RESULTADO_EXTRA", resultado)
+        intent.putExtra("TITULO_EXTRA", titulo)
+        intent.putExtra("TEXTO_EXTRA", texto)
 
         startActivity(intent)
     }
+
 }
 

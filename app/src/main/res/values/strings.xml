@@ -7,6 +7,9 @@
     <string name="Sobrepeso">Sobrepeso</string>
     <string name="Obesidad">Obesidad</string>
     <string name="Pesonormal">Peso normal</string>
-    <string name="Pesoiferior">Peso inferior a la media</string>
-
+    <string name="Pesoiferior">Peso inferior</string>
+    <string name="Sobrepesodesc">Peso superior a la media, teniendo en cuenta tu peso y altura</string>
+    <string name="Obesidaddesc">Peso muy superior a lo normal, tienes un problema, tienes que cuidarte más.</string>
+    <string name="Pesonormaldesc">Peso normal, estás en plena forma</string>
+    <string name="Pesoiferiordesc">Peso inferior al peso normal</string>
 </resources>
